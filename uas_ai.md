@@ -246,8 +246,8 @@ Visualisasi melalui confusion matrix dan metrik evaluasi lainnya menunjukkan bah
 ### Apakah tujuan proyek tercapai? 
 Tujuan utama dari proyek ini adalah memprediksi risiko depresi secara dini dengan menggunakan pendekatan kecerdasan buatan berdasarkan faktor-faktor personal dan sosial. Berdasarkan hasil evaluasi:
 
-✅ Model mampu mengenali pola dari individu yang berisiko tinggi terhadap depresi.
-✅ Sistem berhasil dibangun dan diimplementasikan secara lengkap dari preprocessing hingga evaluasi.
+- ✅ Model mampu mengenali pola dari individu yang berisiko tinggi terhadap depresi.
+- ✅ Sistem berhasil dibangun dan diimplementasikan secara lengkap dari preprocessing hingga evaluasi.
 
 Dengan demikian, tujuan proyek dinyatakan tercapai, terutama dari sisi kemampuan deteksi dan potensi penerapan dalam konteks organisasi kerja, kampus, atau komunitas kesehatan mental.
 
