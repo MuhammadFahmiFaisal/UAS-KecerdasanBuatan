@@ -13,49 +13,64 @@
 
 ## 2. Business Understanding
 
-### Problem Statements
-1. Bagaimana memanfaatkan data gaya hidup dan pekerjaan untuk memprediksi risiko depresi pada kalangan profesional?
-2. Apa saja faktor dominan yang berkontribusi terhadap kondisi depresi berdasarkan data yang tersedia?
-3. Bagaimana mengoptimalkan performa model prediksi depresi terhadap data tidak seimbang?
+### Permasalahan Dunia Nyata
+Depresi merupakan gangguan mental yang memengaruhi jutaan orang di seluruh dunia. Menurut Organisasi Kesehatan Dunia (WHO), lebih dari 280 juta orang mengalami depresi secara global, dan kasus ini meningkat tiap tahunnya (World Health Organization, 2023). Depresi tidak hanya berdampak pada kesehatan individu, tetapi juga menurunkan produktivitas kerja dan meningkatkan risiko penyakit kronis lainnya. Sayangnya, banyak kasus depresi yang tidak terdeteksi sejak dini, terutama di lingkungan kerja yang menuntut tekanan tinggi dan jam kerja panjang (Harvey et al., 2017).
 
-### Goals
-- Membangun model klasifikasi untuk mendeteksi risiko depresi.
-- Menerapkan teknik normalisasi dan penyeimbangan data (SMOTE).
-- Menyediakan sistem prediksi yang dapat digunakan sebagai alat skrining awal.
+### Tujuan Proyek
+Tujuan utama dari proyek ini adalah membangun model kecerdasan buatan berbasis algoritma K-Nearest Neighbors (KNN) untuk memprediksi risiko depresi berdasarkan faktor-faktor seperti tekanan kerja, kepuasan kerja, durasi tidur, kebiasaan makan, stres finansial, serta riwayat keluarga terkait kesehatan mental. Dengan deteksi dini, diharapkan organisasi atau institusi dapat memberikan intervensi tepat waktu.
 
-### Solution Approach
-- Eksplorasi dan analisis data (EDA).
-- Encoding untuk fitur kategorikal, normalisasi untuk fitur numerik.
-- Penggunaan KNN dengan hyperparameter tuning (GridSearchCV).
-- Evaluasi dengan confusion matrix, classification report, ROC curve.
-- Penggunaan SMOTE untuk menangani ketidakseimbangan data.
+### Pengguna Sistem
+Pengguna sistem ini terdiri dari:
+- Divisi HRD pada perusahaan yang ingin mengelola kesehatan mental karyawan secara proaktif.
+- Psikolog atau konselor yang memerlukan alat bantu diagnostik awal.
+- Instansi pendidikan atau organisasi sosial yang fokus pada kesehatan mental.
+- Peneliti yang ingin melakukan analisis lebih lanjut berdasarkan data gejala psikologis.
+
+### Manfaat Implementasi AI
+Penerapan model kecerdasan buatan dalam mendeteksi depresi memberikan sejumlah manfaat nyata :
+- **Deteksi Dini dan Cepat** – AI mampu mengolah ribuan data dengan cepat untuk menghasilkan prediksi depresi, bahkan sebelum individu menyadari gejala mereka (Shatte et al., 2019).
+- **Pengambilan Keputusan Berbasis Data** – Model prediksi memberikan informasi tambahan bagi profesional kesehatan mental untuk pengambilan keputusan lebih baik.
+- **Skalabilitas dan Efisiensi** – Sistem ini dapat digunakan untuk skrining massal di tempat kerja atau pendidikan secara efisien dan berbiaya rendah.
+- **Peningkatan Kesadaran dan Pencegahan** – Dengan mengetahui faktor risiko yang relevan, organisasi dapat menyusun program pencegahan yang lebih terarah.
 
 ---
 
 ## 3. Data Understanding
 
-### Dataset
-- **Sumber**: [Kaggle - Depression Professional Dataset](https://www.kaggle.com/datasets/ikynahidwin/depression-professional-dataset)
-- **Ukuran Data**: 2054 baris, 11 kolom
+### Sumber Dataset
+Dataset yang digunakan dalam proyek ini diperoleh dari platform Kaggle, sebuah situs berbagi data dan kompetisi machine learning yang banyak digunakan secara global. Dataset ini berjudul “Depression Professional Dataset”, dan dapat diakses melalui tautan berikut: https://www.kaggle.com/datasets/ikynahidwin/depression-professional-dataset. Dataset ini dikembangkan untuk mendeteksi tingkat depresi individu berdasarkan berbagai faktor psikososial dan gaya hidup. Platform seperti Kaggle telah banyak digunakan untuk mengakses dataset open source berkualitas tinggi dalam pengembangan sistem berbasis kecerdasan buatan (Sirsat et al., 2020).
 
-### Fitur
+### Deskripsi Setiap Fitur
 
 | Fitur                          | Tipe     | Deskripsi |
 |-------------------------------|----------|-----------|
-| Gender                        | Object   | Jenis kelamin |
-| Age                           | Integer  | Usia responden |
-| Work Pressure                 | Float    | Tekanan kerja (1–5) |
-| Job Satisfaction              | Float    | Kepuasan kerja (1–5) |
-| Sleep Duration                | Object   | Lama tidur |
-| Dietary Habits               | Object   | Pola makan |
+| Gender                        | Object   | Jenis kelamin responden (Male/Female). |
+| Age                           | Integer  | Usia responden dalam tahun |
+| Work Pressure                 | Float    | Tingkat tekanan pekerjaan (1: rendah – 5: tinggi). |
+| Job Satisfaction              | Float    | Tingkat kepuasan kerja (1: sangat tidak puas – 5: sangat puas). |
+| Sleep Duration                | Object   | Durasi tidur harian (misal: 5-6 hours, 7-8 hours). |
+| Dietary Habits               | Object   | Pola makan responden (Unhealthy, Moderate, Healthy). |
 | Suicidal Thoughts             | Object   | Pikiran bunuh diri (Yes/No) |
 | Work Hours                    | Integer  | Jam kerja per hari |
 | Financial Stress              | Integer  | Stres finansial (1–5) |
 | Family History                | Object   | Riwayat mental dalam keluarga |
-| Depression                    | Object   | Target: Ya / Tidak |
+| Depression                    | Object   | Label target, yaitu apakah responden mengalami depresi (Yes/No). |
 
-### Target
-- `Depression`: 203 (Yes), 1851 (No) → **Kelas tidak seimbang**
+Atribut-atribut ini mencerminkan elemen penting dari dimensi psikologis dan kondisi sosial-ekonomi yang sering kali dikaitkan dengan gangguan depresi, sebagaimana dijelaskan dalam literatur psikologi kesehatan (American Psychiatric Association, 2022).
+
+
+### Ukuran dan Format Data
+Dataset memiliki total 2054 entri (baris) dan 11 kolom fitur. Format file adalah CSV (Comma Separated Values), yang mudah diproses oleh perangkat lunak analisis data seperti Python, R, atau Excel.
+
+### Tipe Data dan Target Klasifikasi
+Tipe data pada dataset terdiri dari:
+
+- **Numerik**, : Age, Work Pressure, Job Satisfaction, Work Hours, Financial Stress
+- **Kategorikal** : Gender, Sleep Duration, Dietary Habits, Have you ever had suicidal thoughts?, Family History of Mental Illness
+
+**Label Target (Output)** : Depression → Biner: 0 (Tidak depresi), 1 (Depresi)
+
+Karena nilai target merupakan label biner, maka pendekatan klasifikasi biner seperti K-Nearest Neighbors (KNN) sangat sesuai dalam proyek ini (Dwyer et al., 2018).
 
 ---
 
