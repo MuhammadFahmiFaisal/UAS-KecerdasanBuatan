@@ -324,4 +324,7 @@ Visualisasi ini menunjukkan kontribusi masing-masing fitur terhadap prediksi mod
 ![image](https://github.com/user-attachments/assets/e1cac945-851f-40b7-a0b4-aa6171ee7184)
 *Gambar 10 : Visualisasi Pairplot Antar Fitur*
 
+Visualisasi ini menunjukkan hubungan antar fitur numerik, dibedakan berdasarkan label Depression.
+- Digunakan untuk mendeteksi klaster atau korelasi visual antara kombinasi dua fitur.
+- Misalnya, individu dengan stres finansial tinggi dan kepuasan kerja rendah lebih sering berada di area label Depression = 1.
 ---
