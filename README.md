@@ -1,138 +1,84 @@
  
 # Laporan Proyek Machine Learning - Prediksi Tingkat Depresi
 
-## 1. Judul Proyek
+ 
 
-**Prediksi Risiko Depresi pada Profesional Berdasarkan Faktor Gaya Hidup dan Tekanan Kerja Menggunakan Algoritma K-Nearest Neighbors (KNN)**
-
+# UAS - Prediksi Tingkat Depresi Menggunakan K-Nearest Neighbors
 ## Anggota Kelompok
 
 1. Muhammad Fahmi Faisal - 2306061  
 2. Irham Sugriantha - 2306048  
 
---- 
-
-## 2. Business Understanding
-
-### Problem Statements
-1. Bagaimana memanfaatkan data gaya hidup dan pekerjaan untuk memprediksi risiko depresi pada kalangan profesional?
-2. Apa saja faktor dominan yang berkontribusi terhadap kondisi depresi berdasarkan data yang tersedia?
-3. Bagaimana mengoptimalkan performa model prediksi depresi terhadap data tidak seimbang?
-
-### Goals
-- Membangun model klasifikasi untuk mendeteksi risiko depresi.
-- Menerapkan teknik normalisasi dan penyeimbangan data (SMOTE).
-- Menyediakan sistem prediksi yang dapat digunakan sebagai alat skrining awal.
-
-### Solution Approach
-- Eksplorasi dan analisis data (EDA).
-- Encoding untuk fitur kategorikal, normalisasi untuk fitur numerik.
-- Penggunaan KNN dengan hyperparameter tuning (GridSearchCV).
-- Evaluasi dengan confusion matrix, classification report, ROC curve.
-- Penggunaan SMOTE untuk menangani ketidakseimbangan data.
-
 ---
 
-## 3. Data Understanding
+## Judul Proyek
 
-### Dataset
-- **Sumber**: [Kaggle - Depression Professional Dataset](https://www.kaggle.com/datasets/ikynahidwin/depression-professional-dataset)
-- **Ukuran Data**: 2054 baris, 11 kolom
+**Prediksi Risiko Depresi pada Profesional Berdasarkan Faktor Gaya Hidup dan Tekanan Kerja Menggunakan Algoritma K-Nearest Neighbors (KNN)**
 
-### Fitur
+Proyek ini bertujuan untuk membangun model klasifikasi tingkat depresi berdasarkan data profesional, dengan menggunakan algoritma **K-Nearest Neighbors (KNN)**. Data diproses, divisualisasikan, dan dimodelkan dalam Google Colab menggunakan Python dan pustaka scikit-learn, seaborn, serta SHAP untuk interpretabilitas.
 
-| Fitur                          | Tipe     | Deskripsi |
-|-------------------------------|----------|-----------|
-| Gender                        | Object   | Jenis kelamin |
-| Age                           | Integer  | Usia responden |
-| Work Pressure                 | Float    | Tekanan kerja (1–5) |
-| Job Satisfaction              | Float    | Kepuasan kerja (1–5) |
-| Sleep Duration                | Object   | Lama tidur |
-| Dietary Habits               | Object   | Pola makan |
-| Suicidal Thoughts             | Object   | Pikiran bunuh diri (Yes/No) |
-| Work Hours                    | Integer  | Jam kerja per hari |
-| Financial Stress              | Integer  | Stres finansial (1–5) |
-| Family History                | Object   | Riwayat mental dalam keluarga |
-| Depression                    | Object   | Target: Ya / Tidak |
+## 🔍 Deskripsi Dataset
+Dataset berisi 2054 entri dengan 11 fitur, meliputi:
+- Gender
+- Usia
+- Tekanan Kerja
+- Kepuasan Kerja
+- Durasi Tidur
+- Pola Makan
+- Riwayat Pikiran Bunuh Diri
+- Jam Kerja
+- Stres Finansial
+- Riwayat Kesehatan Mental Keluarga
+- Label target: **Depression** (`Yes` / `No`)
 
-### Target
-- `Depression`: 203 (Yes), 1851 (No) → **Kelas tidak seimbang**
+## 🧰 Library yang Digunakan
+- `pandas`, `numpy`
+- `seaborn`, `matplotlib`
+- `scikit-learn`
+- `imblearn (SMOTE)`
+- `shap` (interpretasi model)
 
----
+## ⚙️ Langkah-langkah Pengerjaan
 
-## 4. Exploratory Data Analysis (EDA)
+### 1. Import Library
+Mengimpor seluruh pustaka Python yang diperlukan untuk proses pemodelan dan visualisasi.
 
-- **Distribusi Kategorikal**: Visualisasi bar chart (`Gender`, `Sleep Duration`, `Dietary Habits`, dll).
-- **Distribusi Numerik**: Histogram & boxplot (`Age`, `Work Pressure`, dll).
-- **Korelasi**: Heatmap antar fitur numerik (`Work Hours`, `Financial Stress`, dsb).
-- **Keseimbangan Kelas**: Visualisasi distribusi sebelum & sesudah SMOTE.
-- **Pairplot**: Hubungan antar fitur numerik terhadap kelas target.
+### 2. Load Dataset
+- Dataset dimuat dari Google Drive.
+- Menampilkan dimensi dan 5 baris pertama dataset.
 
----
+### 3. Eksplorasi Data
+- Menampilkan informasi struktur dan statistik dataset (`data.info()`, `describe()`).
+- Visualisasi distribusi fitur kategorikal dan numerik.
+- Mengecek nilai kosong dan duplikat.
 
-## 5. Data Preparation
+### 4. Visualisasi Data
+- Bar chart untuk fitur kategorikal.
+- Histogram dan boxplot untuk fitur numerik.
+- Heatmap korelasi antar fitur numerik.
 
-- Tidak ada **missing value** atau **duplikat**.
-- **Label Encoding**: Fitur kategorikal dikonversi menjadi numerik.
-- **Normalisasi**: MinMaxScaler untuk fitur numerik.
-- **Split**: Train-test (80:20) dengan stratifikasi.
-- **SMOTE**: Untuk oversampling data depresi (kelas minoritas).
+### 5. Pra-Pemrosesan Data
+- **Encoding**: Label Encoding pada fitur kategorikal.
+- **Normalisasi**: MinMaxScaler digunakan untuk skala fitur numerik.
+- **Splitting**: Membagi data menjadi data latih dan uji (80:20).
+- **SMOTE**: Menangani ketidakseimbangan data dengan oversampling.
 
----
+### 6. Model KNN + GridSearchCV
+- Model KNN dilatih dengan pencarian parameter `k` terbaik menggunakan GridSearchCV.
+- Parameter terbaik yang diperoleh: `n_neighbors = 4`.
 
-## 6. Modeling
+### 7. Evaluasi Model
+- Menggunakan `classification_report` dan `confusion_matrix`.
+- Akurasi model: **90%**, recall depresi: **78%**.
+- ROC Curve dan nilai AUC divisualisasikan.
 
-- **Algoritma**: K-Nearest Neighbors (KNN)
-- **Tuning**: GridSearchCV → Best `k = 4`
-- **Model Lain**: Decision Tree digunakan sebagai pembanding dan visualisasi pohon keputusan.
-- **PCA**: Reduksi dimensi → Visualisasi data 2D
-- **Interpretabilitas**: SHAP untuk menunjukkan fitur penting
+### 8. Visualisasi Tambahan
+- Korelasi semua fitur.
+- Visualisasi Decision Tree sebagai referensi interpretasi struktur.
+- PCA: Reduksi dimensi untuk visualisasi data dalam 2D.
+- SHAP: Menampilkan pentingnya fitur dalam model.
 
----
+### 9. Pairplot
+- Visualisasi hubungan antar fitur numerik berdasarkan label depresi.
 
-## 7. Evaluation
-
-### Confusion Matrix  
-![Confusion Matrix](https://github.com/user-attachments/assets/805e0a6b-8b5f-456f-9d60-702106ce2a43)
-
-### Classification Report
-```
-              precision    recall  f1-score   support
-           0       0.97      0.91      0.94       370
-           1       0.48      0.78      0.60        41
-
-    accuracy                           0.90       411
-   macro avg       0.73      0.84      0.77       411
-weighted avg       0.93      0.90      0.91       411
-```
-
-### ROC Curve
-- AUC: **0.89**  
-- Interpretasi: Model sangat baik dalam membedakan kelas meski data tidak seimbang.
-
-### Visual Tambahan
-- Decision Tree Visualization  
-- SHAP Feature Importance  
-- PCA 2D Scatter Plot  
-
----
-
-## 8. Kesimpulan & Rekomendasi
-
-### Keberhasilan
-- Akurasi model **90%**
-- **SMOTE** efektif dalam menangani ketidakseimbangan
-- Visualisasi dan interpretasi model lengkap
-
-### Keterbatasan
-- **Recall** pada kelas minoritas masih rendah meski sudah ditangani SMOTE
-- KNN sensitif terhadap outlier dan noise
-- Ukuran dataset masih terbatas
-
-### Rekomendasi
-- Tambahkan lebih banyak fitur (psikologi, sosial, dsb)
-- Gunakan algoritma lain: Random Forest, XGBoost
-- Coba ensemble learning atau stacking
-- Lakukan evaluasi lanjutan dengan data real-world
-
----
+## 📈 Hasil Evaluasi
