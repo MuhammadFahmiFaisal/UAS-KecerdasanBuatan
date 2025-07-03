@@ -9,9 +9,6 @@
 ## Tujuan Proyek
 Proyek ini bertujuan untuk membangun model klasifikasi tingkat depresi berdasarkan data profesional, dengan menggunakan algoritma **K-Nearest Neighbors (KNN)**. Data diproses, divisualisasikan, dan dimodelkan dalam Google Colab menggunakan Python dan pustaka scikit-learn, seaborn, serta SHAP untuk interpretabilitas.
 
-## 🔍 Deskripsi Dataset
-Dataset berisi 2054 entri dengan 11 fitur, meliputi:
-
 ## 📊 Struktur Dataset
 
 Berikut adalah struktur dataset yang digunakan dalam proyek prediksi tingkat depresi:
@@ -32,19 +29,6 @@ Berikut adalah struktur dataset yang digunakan dalam proyek prediksi tingkat dep
 
 📌 **Total entri**: 2054  
 ✅ **Tidak terdapat missing value**
-
- 
-- Gender
-- Usia
-- Tekanan Kerja
-- Kepuasan Kerja
-- Durasi Tidur
-- Pola Makan
-- Riwayat Pikiran Bunuh Diri
-- Jam Kerja
-- Stres Finansial
-- Riwayat Kesehatan Mental Keluarga
-- Label target: **Depression** (`Yes` / `No`)
 
 ## 🧰 Library yang Digunakan
 - `pandas`, `numpy`
