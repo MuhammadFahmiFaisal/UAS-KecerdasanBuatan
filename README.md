@@ -1,4 +1,4 @@
-## Laporan Proyek Machine Learning - TB\_DEPRESI
+## Laporan Proyek Machine Learning - Prediksi Tingkat Depresi
 
 ### 1. Judul Proyek
 
@@ -6,8 +6,8 @@
 
 **Anggota Kelompok:**
 
-* Leni Fitriani
-* \[Nama anggota lainnya, jika ada]
+* 1. Muhammad Fahmi Faisal - 2306061
+* 2. Irham Sugriantha - 2306048
 
 ---
 
@@ -39,7 +39,8 @@
 
 #### Dataset:
 
-* Sumber: Kaggle - "Depression in Professional Dataset"
+* Sumber: Kaggle - "Depression Professional Dataset"
+* Link : https://www.kaggle.com/datasets/ikynahidwin/depression-professional-dataset 
 * Jumlah Data: 2054 baris, 11 kolom
 
 #### Fitur:
@@ -91,12 +92,6 @@
   * Algoritma sederhana namun efektif untuk data dengan banyak fitur numerik.
   * Mudah diinterpretasi dan cocok untuk data kecil–menengah.
 * **Tuning Hyperparameter**: GridSearchCV menemukan nilai `k = 4` terbaik.
-
-```python
-param_grid = {'n_neighbors': range(3, 20)}
-grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=5)
-grid.fit(X_train_sm, y_train_sm)
-```
 
 ---
 
@@ -155,19 +150,3 @@ weighted avg       0.93      0.90      0.91       411
   * Terapkan ensemble learning.
 
 ---
-
-### 9. Referensi (APA Style)
-
-1. Zhang, Y., & Zheng, L. (2021). Machine learning for mental health prediction: A systematic review. *Computers in Human Behavior*, 115, 106651.
-2. Choudhury, M. D., et al. (2013). Predicting Depression via Social Media. *ICWSM*.
-3. Han, J., Kamber, M., & Pei, J. (2012). *Data Mining: Concepts and Techniques* (3rd ed.). Elsevier.
-4. Aggarwal, C. C. (2015). *Data Mining: The Textbook*. Springer.
-5. Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. *JMLR*, 12, 2825–2830.
-
----
-
-### 10. Lampiran (Opsional)
-
-* Dataset: Depression\_Professional\_Dataset.csv
-* Notebook: TB\_DEPRESI.ipynb
-* Visualisasi tambahan: Bar chart, Heatmap, ROC Curve, dll.
