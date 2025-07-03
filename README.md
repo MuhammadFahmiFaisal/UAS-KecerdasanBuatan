@@ -24,7 +24,7 @@ Dataset berisi 2054 entri dengan 11 fitur, meliputi:
  8   Financial Stress                       2054 non-null   int64  
  9   Family History of Mental Illness       2054 non-null   object 
  10  Depression                             2054 non-null   object 
-
+ 
 - Gender
 - Usia
 - Tekanan Kerja
