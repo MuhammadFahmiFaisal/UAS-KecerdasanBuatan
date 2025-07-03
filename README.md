@@ -1,9 +1,4 @@
- 
-# Laporan Proyek Machine Learning - Prediksi Tingkat Depresi
-
- 
-
-# UAS - Prediksi Tingkat Depresi Menggunakan K-Nearest Neighbors
+ # UAS - Prediksi Tingkat Depresi Menggunakan K-Nearest Neighbors
 ## Anggota Kelompok
 
 1. Muhammad Fahmi Faisal - 2306061  
@@ -11,10 +6,7 @@
 
 ---
 
-## Judul Proyek
-
-**Prediksi Risiko Depresi pada Profesional Berdasarkan Faktor Gaya Hidup dan Tekanan Kerja Menggunakan Algoritma K-Nearest Neighbors (KNN)**
-
+## Tujuan Proyek
 Proyek ini bertujuan untuk membangun model klasifikasi tingkat depresi berdasarkan data profesional, dengan menggunakan algoritma **K-Nearest Neighbors (KNN)**. Data diproses, divisualisasikan, dan dimodelkan dalam Google Colab menggunakan Python dan pustaka scikit-learn, seaborn, serta SHAP untuk interpretabilitas.
 
 ## 🔍 Deskripsi Dataset
