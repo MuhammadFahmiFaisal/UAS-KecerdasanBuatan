@@ -11,19 +11,28 @@ Proyek ini bertujuan untuk membangun model klasifikasi tingkat depresi berdasark
 
 ## 🔍 Deskripsi Dataset
 Dataset berisi 2054 entri dengan 11 fitur, meliputi:
-#   Column                                 Non-Null Count  Dtype  
----  ------                                 --------------  -----  
- 0   Gender                                 2054 non-null   object 
- 1   Age                                    2054 non-null   int64  
- 2   Work Pressure                          2054 non-null   float64
- 3   Job Satisfaction                       2054 non-null   float64
- 4   Sleep Duration                         2054 non-null   object 
- 5   Dietary Habits                         2054 non-null   object 
- 6   Have you ever had suicidal thoughts ?  2054 non-null   object 
- 7   Work Hours                             2054 non-null   int64  
- 8   Financial Stress                       2054 non-null   int64  
- 9   Family History of Mental Illness       2054 non-null   object 
- 10  Depression                             2054 non-null   object 
+
+## 📊 Struktur Dataset
+
+Berikut adalah struktur dataset yang digunakan dalam proyek prediksi tingkat depresi:
+
+| No. | Kolom                                     | Non-Null Count | Tipe Data  | Deskripsi Singkat                                       |
+|-----|-------------------------------------------|----------------|------------|----------------------------------------------------------|
+| 0   | Gender                                    | 2054           | object     | Jenis kelamin responden (`Male`, `Female`)              |
+| 1   | Age                                       | 2054           | int64      | Usia responden                                           |
+| 2   | Work Pressure                             | 2054           | float64    | Tingkat tekanan kerja (skala 1–5)                        |
+| 3   | Job Satisfaction                          | 2054           | float64    | Tingkat kepuasan kerja (skala 1–5)                       |
+| 4   | Sleep Duration                            | 2054           | object     | Durasi tidur (`5-6 hours`, `7-8 hours`, dll.)            |
+| 5   | Dietary Habits                            | 2054           | object     | Pola makan (`Healthy`, `Moderate`, `Unhealthy`)         |
+| 6   | Have you ever had suicidal thoughts?      | 2054           | object     | Pernahkah memiliki pikiran bunuh diri? (`Yes` / `No`)   |
+| 7   | Work Hours                                | 2054           | int64      | Jumlah jam kerja per hari                                |
+| 8   | Financial Stress                          | 2054           | int64      | Tingkat stres finansial (skala 1–5)                      |
+| 9   | Family History of Mental Illness          | 2054           | object     | Riwayat penyakit mental dalam keluarga (`Yes` / `No`)   |
+| 10  | Depression                                | 2054           | object     | Label target (`Yes` = depresi, `No` = tidak)             |
+
+📌 **Total entri**: 2054  
+✅ **Tidak terdapat missing value**
+
  
 - Gender
 - Usia
