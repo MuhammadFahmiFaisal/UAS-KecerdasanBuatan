@@ -11,6 +11,20 @@ Proyek ini bertujuan untuk membangun model klasifikasi tingkat depresi berdasark
 
 ## 🔍 Deskripsi Dataset
 Dataset berisi 2054 entri dengan 11 fitur, meliputi:
+#   Column                                 Non-Null Count  Dtype  
+---  ------                                 --------------  -----  
+ 0   Gender                                 2054 non-null   object 
+ 1   Age                                    2054 non-null   int64  
+ 2   Work Pressure                          2054 non-null   float64
+ 3   Job Satisfaction                       2054 non-null   float64
+ 4   Sleep Duration                         2054 non-null   object 
+ 5   Dietary Habits                         2054 non-null   object 
+ 6   Have you ever had suicidal thoughts ?  2054 non-null   object 
+ 7   Work Hours                             2054 non-null   int64  
+ 8   Financial Stress                       2054 non-null   int64  
+ 9   Family History of Mental Illness       2054 non-null   object 
+ 10  Depression                             2054 non-null   object 
+
 - Gender
 - Usia
 - Tekanan Kerja
