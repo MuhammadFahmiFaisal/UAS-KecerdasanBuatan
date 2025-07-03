@@ -98,6 +98,7 @@
 ### 7. Evaluation
 
 * **Confusion Matrix:**
+![image](https://github.com/user-attachments/assets/9612735e-820b-4515-8b4a-a06c108f280f)
 
 ```
 Predicted  No   Yes
