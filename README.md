@@ -73,33 +73,7 @@ Mengimpor seluruh pustaka Python yang diperlukan untuk proses pemodelan dan visu
 ### 9. Pairplot
 - Visualisasi hubungan antar fitur numerik berdasarkan label depresi.
 
-## 📈 Hasil Evaluasi
-### Confusion Matrix  
-![Confusion Matrix](https://github.com/user-attachments/assets/805e0a6b-8b5f-456f-9d60-702106ce2a43)
-
-### Classification Report
-```
-              precision    recall  f1-score   support
-           0       0.97      0.91      0.94       370
-           1       0.48      0.78      0.60        41
-
-    accuracy                           0.90       411
-   macro avg       0.73      0.84      0.77       411
-weighted avg       0.93      0.90      0.91       411
-```
-
-### ROC Curve
-- AUC: **0.89**  
-- Interpretasi: Model sangat baik dalam membedakan kelas meski data tidak seimbang.
-
-### Visual Tambahan
-- Decision Tree Visualization  
-- SHAP Feature Importance  
-- PCA 2D Scatter Plot  
-
----
-
-## 8. Kesimpulan & Rekomendasi
+## Kesimpulan & Rekomendasi
 
 ### Keberhasilan
 - Akurasi model **90%**
