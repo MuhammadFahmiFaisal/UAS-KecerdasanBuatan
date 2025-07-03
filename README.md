@@ -98,14 +98,8 @@
 ### 7. Evaluation
 
 * **Confusion Matrix:**
-![image](https://github.com/user-attachments/assets/9612735e-820b-4515-8b4a-a06c108f280f)
 
-```
-Predicted  No   Yes
-Actual
-No         337   33
-Yes         9    32
-```
+![image](https://github.com/user-attachments/assets/805e0a6b-8b5f-456f-9d60-702106ce2a43)
 
 * **Classification Report:**
 
