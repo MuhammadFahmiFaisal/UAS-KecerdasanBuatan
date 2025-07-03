@@ -14,7 +14,7 @@
 ## 2. Business Understanding
 
 ### Permasalahan Dunia Nyata
-Depresi merupakan gangguan mental yang memengaruhi jutaan orang di seluruh dunia. Menurut Organisasi Kesehatan Dunia (WHO), lebih dari 280 juta orang mengalami depresi secara global, dan kasus ini meningkat tiap tahunnya (World Health Organization, 2023). Depresi tidak hanya berdampak pada kesehatan individu, tetapi juga menurunkan produktivitas kerja dan meningkatkan risiko penyakit kronis lainnya. Sayangnya, banyak kasus depresi yang tidak terdeteksi sejak dini, terutama di lingkungan kerja yang menuntut tekanan tinggi dan jam kerja panjang (Harvey et al., 2017).
+Depresi merupakan gangguan mental yang memengaruhi jutaan orang di seluruh dunia. Menurut Organisasi Kesehatan Dunia (WHO), lebih dari 280 juta orang mengalami depresi secara global, dan kasus ini meningkat tiap tahunnya (World Health Organization, 2023). Depresi tidak hanya berdampak pada kesehatan individu, tetapi juga menurunkan produktivitas kerja dan sering tidak terdeteksi secara dini, terutama di kalangan profesional (Astuti & Mahmudah, 2022).
 
 ### Tujuan Proyek
 Tujuan utama dari proyek ini adalah membangun model kecerdasan buatan berbasis algoritma K-Nearest Neighbors (KNN) untuk memprediksi risiko depresi berdasarkan faktor-faktor seperti tekanan kerja, kepuasan kerja, durasi tidur, kebiasaan makan, stres finansial, serta riwayat keluarga terkait kesehatan mental. Dengan deteksi dini, diharapkan organisasi atau institusi dapat memberikan intervensi tepat waktu.
@@ -28,7 +28,7 @@ Pengguna sistem ini terdiri dari:
 
 ### Manfaat Implementasi AI
 Penerapan model kecerdasan buatan dalam mendeteksi depresi memberikan sejumlah manfaat nyata :
-- **Deteksi Dini dan Cepat** – AI mampu mengolah ribuan data dengan cepat untuk menghasilkan prediksi depresi, bahkan sebelum individu menyadari gejala mereka (Shatte et al., 2019).
+- **Deteksi Dini dan Cepat** – Kecerdasan buatan dapat mendeteksi gejala depresi secara dini berdasarkan pola data perilaku dan gaya hidup (Syafitri & Risnandar, 2020).
 - **Pengambilan Keputusan Berbasis Data** – Model prediksi memberikan informasi tambahan bagi profesional kesehatan mental untuk pengambilan keputusan lebih baik.
 - **Skalabilitas dan Efisiensi** – Sistem ini dapat digunakan untuk skrining massal di tempat kerja atau pendidikan secara efisien dan berbiaya rendah.
 - **Peningkatan Kesadaran dan Pencegahan** – Dengan mengetahui faktor risiko yang relevan, organisasi dapat menyusun program pencegahan yang lebih terarah.
@@ -38,7 +38,7 @@ Penerapan model kecerdasan buatan dalam mendeteksi depresi memberikan sejumlah m
 ## 3. Data Understanding
 
 ### Sumber Dataset
-Dataset yang digunakan dalam proyek ini diperoleh dari platform Kaggle, sebuah situs berbagi data dan kompetisi machine learning yang banyak digunakan secara global. Dataset ini berjudul “Depression Professional Dataset”, dan dapat diakses melalui tautan berikut: https://www.kaggle.com/datasets/ikynahidwin/depression-professional-dataset. Dataset ini dikembangkan untuk mendeteksi tingkat depresi individu berdasarkan berbagai faktor psikososial dan gaya hidup. Platform seperti Kaggle telah banyak digunakan untuk mengakses dataset open source berkualitas tinggi dalam pengembangan sistem berbasis kecerdasan buatan (Sirsat et al., 2020).
+Dataset yang digunakan dalam proyek ini diperoleh dari platform Kaggle, sebuah situs berbagi data dan kompetisi machine learning yang banyak digunakan secara global. Dataset ini berjudul “Depression Professional Dataset”, dan dapat diakses melalui tautan berikut: https://www.kaggle.com/datasets/ikynahidwin/depression-professional-dataset. Dataset ini dikembangkan untuk mendeteksi tingkat depresi individu berdasarkan berbagai faktor psikososial dan gaya hidup. 
 
 ### Deskripsi Setiap Fitur
 
@@ -70,46 +70,148 @@ Tipe data pada dataset terdiri dari:
 
 **Label Target (Output)** : Depression → Biner: 0 (Tidak depresi), 1 (Depresi)
 
-Karena nilai target merupakan label biner, maka pendekatan klasifikasi biner seperti K-Nearest Neighbors (KNN) sangat sesuai dalam proyek ini (Dwyer et al., 2018).
+Karena nilai target merupakan label biner, maka pendekatan klasifikasi biner seperti K-Nearest Neighbors (KNN) sangat sesuai dalam proyek ini.
 
 ---
 
 ## 4. Exploratory Data Analysis (EDA)
 
-- **Distribusi Kategorikal**: Visualisasi bar chart (`Gender`, `Sleep Duration`, `Dietary Habits`, dll).
-- **Distribusi Numerik**: Histogram & boxplot (`Age`, `Work Pressure`, dll).
-- **Korelasi**: Heatmap antar fitur numerik (`Work Hours`, `Financial Stress`, dsb).
-- **Keseimbangan Kelas**: Visualisasi distribusi sebelum & sesudah SMOTE.
-- **Pairplot**: Hubungan antar fitur numerik terhadap kelas target.
+### Visualisasi Distribusi Data
+Langkah awal dalam proses EDA adalah menganalisis distribusi data untuk memahami sebaran nilai dari masing-masing fitur. Distribusi fitur numerik seperti usia, tekanan kerja, kepuasan kerja, jam kerja, dan stres finansial divisualisasikan menggunakan histogram dan boxplot, sementara fitur kategorikal divisualisasikan dalam bentuk bar chart.
+
+![image](https://github.com/user-attachments/assets/0b7c395d-9901-49f6-89df-4561cb8b878e)
+*Gambar 1 : Visualisasi Distribusi Fitur Numerik*
+
+![image](https://github.com/user-attachments/assets/7df73193-2188-4f46-b9ef-173c0608cee7)
+*Gambar 2 : Visualisasi Distribusi Fitur Kategorikal*
+
+Visualisasi seperti histogram dan bar chart sangat penting dalam memahami skala dan frekuensi masing-masing fitur serta mendeteksi outlier (Waskom, 2021).
+
+### Analisis korelasi antar fitur
+Untuk mengetahui hubungan antara fitur numerik, digunakan visualisasi heatmap korelasi Pearson.
+
+![image](https://github.com/user-attachments/assets/fa41dc97-721b-4aa9-9656-5b172ba43a3d)
+*Gambar 3 : Korelasi Antar Fitur Numerik*
+
+Hasil menunjukkan:
+- Korelasi positif sedang antara stres finansial dan tekanan kerja.
+- Korelasi negatif lemah antara jam kerja dan kepuasan kerja.
+
+Selain itu, digunakan boxplot untuk melihat distribusi dan pola hubungan antar pasangan fitur numerik. Ini membantu mengidentifikasi fitur yang memiliki potensi diskriminatif terhadap kelas target (depresi).
+
+![image](https://github.com/user-attachments/assets/7221e2a0-ce46-41b5-a66b-ee8cb47143db)
+*Gambar 4 : Boxplot Fitur Numerik*
+
+Analisis korelasi penting untuk menyaring fitur yang redundan atau terlalu berkaitan, serta sebagai dasar pemilihan fitur dalam pemodelan (Kassambara, 2018).
+
+### Deteksi data tidak seimbang 
+Distribusi label target (Depression) menunjukkan ketidakseimbangan data :
+- Tidak depresi: 1851 sampel (±90%)
+- Depresi: 203 sampel (±10%)
+
+Hal ini dikonfirmasi melalui visualisasi bar chart terhadap kolom Depression. Karena ini adalah kasus klasifikasi biner yang tidak seimbang, dilakukan penanganan menggunakan metode SMOTE (Synthetic Minority Over-sampling Technique) pada data latih untuk menyeimbangkan distribusi kelas.
+
+![image](https://github.com/user-attachments/assets/7e758180-5d88-4c9c-8785-311417bb6040)
+*Gambar 5 : Penanganan Data Tidak Seimbang (Imbalance)*
+
+Metode SMOTE telah terbukti meningkatkan akurasi klasifikasi depresi dalam kondisi data tidak seimbang (Dewi & Wulandari, 2021).
+
+### Insight awal dari pola data 
+Berdasarkan eksplorasi awal, ditemukan beberapa temuan penting:
+- Responden dengan durasi tidur kurang dari 6 jam dan tingkat stres keuangan tinggi memiliki kemungkinan lebih besar mengalami depresi.
+- Responden yang pernah memiliki pikiran bunuh diri atau memiliki riwayat keluarga dengan gangguan mental lebih sering diklasifikasikan sebagai depresi.
+- Fitur tekanan kerja, jam kerja berlebih, dan kepuasan kerja rendah juga tampak menjadi indikator awal potensi depresi.
 
 ---
 
 ## 5. Data Preparation
 
-- Tidak ada **missing value** atau **duplikat**.
-- **Label Encoding**: Fitur kategorikal dikonversi menjadi numerik.
-- **Normalisasi**: MinMaxScaler untuk fitur numerik.
-- **Split**: Train-test (80:20) dengan stratifikasi.
-- **SMOTE**: Untuk oversampling data depresi (kelas minoritas).
+### Pembersihan data (null value, duplikasi) 
+Tahap pertama dalam persiapan data adalah melakukan pemeriksaan terhadap data yang hilang (missing values) dan duplikat. Berdasarkan hasil eksplorasi:
+- Tidak ditemukan nilai kosong pada seluruh 11 fitur.
+- Tidak terdapat data duplikat berdasarkan pengecekan data.duplicated().sum() yang menghasilkan nilai 0.
 
+Hal ini menunjukkan bahwa dataset dalam kondisi bersih dan siap digunakan untuk proses selanjutnya.
+
+### Encoding data kategorik
+Dataset ini mengandung sejumlah fitur kategorikal yang perlu dikonversi ke bentuk numerik agar dapat diproses oleh algoritma machine learning. Dalam proyek ini digunakan teknik Label Encoding dari pustaka scikit-learn, yang mengubah setiap kategori menjadi angka integer:
+
+Fitur yang dikodekan:
+- Gender
+- Sleep Duration
+- Dietary Habits
+- Have you ever had suicidal thoughts?
+- Family History of Mental Illness
+- Depression (sebagai target klasifikasi)
+
+Label encoding dipilih karena seluruh fitur kategorikal memiliki jumlah kategori terbatas dan tidak bersifat ordinal kompleks.
+
+### Normalisasi / standardisasi data numerik
+Untuk menghindari bias skala antar fitur numerik, dilakukan proses normalisasi menggunakan metode Min-Max Scaling. Proses ini mengubah nilai fitur menjadi rentang [0, 1] agar model KNN yang berbasis jarak tidak mendistorsi hasil karena perbedaan skala antar fitur.
+
+Fitur yang dinormalisasi:
+- Age
+- Work Pressure
+- Job Satisfaction
+- Work Hours
+- Financial Stress
+
+### Split data (train-test) 
+Setelah proses pembersihan dan transformasi, data dibagi menjadi data latih (train) dan data uji (test) dengan perbandingan 80:20, menggunakan fungsi train_test_split dari scikit-learn. Pembagian dilakukan dengan parameter stratify=y untuk memastikan proporsi kelas (depresi/tidak depresi) tetap seimbang pada kedua subset. 
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, stratify=y, random_state=42)
+```
 ---
 
 ## 6. Modeling
 
-- **Algoritma**: K-Nearest Neighbors (KNN)
-- **Tuning**: GridSearchCV → Best `k = 4`
-- **Model Lain**: Decision Tree digunakan sebagai pembanding dan visualisasi pohon keputusan.
-- **PCA**: Reduksi dimensi → Visualisasi data 2D
-- **Interpretabilitas**: SHAP untuk menunjukkan fitur penting
+### Pemilihan algoritma 
+Dalam proyek ini digunakan algoritma K-Nearest Neighbors (KNN) sebagai model utama untuk klasifikasi tingkat depresi. Selain itu, juga dilakukan eksplorasi visualisasi menggunakan model Decision Tree untuk memahami logika pengambilan keputusan model.
+
+### Alasan Pemilihan KNN:
+- **Sederhana namun efektif** KNN merupakan algoritma non-parametrik yang populer dan efektif dalam klasifikasi gangguan mental (Astuti & Mahmudah, 2022).
+- **Cocok untuk data dengan skala terbatas** Dataset yang digunakan memiliki jumlah fitur dan sampel yang masih terkelola, sehingga performa KNN tetap optimal tanpa beban komputasi tinggi.
+- **Interpretabilitas** Model KNN memungkinkan pelacakan keputusan berdasarkan tetangga terdekat, sehingga dapat dijelaskan kepada pengguna non-teknis.
+
+Selain itu, digunakan GridSearchCV untuk memilih nilai k terbaik berdasarkan validasi silang.
+
+### Implementasi Model
+```python
+
+# Hyperparameter tuning untuk nilai k
+param_grid = {'n_neighbors': range(3, 20)}
+grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=5)
+grid.fit(X_train_sm, y_train_sm)
+
+print("Best K:", grid.best_params_)  # Output contoh: {'n_neighbors': 4}
+
+# Evaluasi model
+from sklearn.metrics import classification_report
+
+y_pred = grid.predict(X_test)
+print(classification_report(y_test, y_pred))
+
+```
+
+### Visualisasi Model
+Untuk meningkatkan interpretabilitas, proyek ini juga menyertakan visualisasi Decision Tree sederhana yang dilatih pada data yang sama. Decision Tree adalah salah satu metode populer untuk visualisasi logika klasifikasi dalam deteksi gejala depresi (Hidayat & Afifuddin, 2022). Walaupun bukan model utama, visualisasi ini membantu memahami logika fitur dalam menentukan prediksi depresi.
+
+![image](https://github.com/user-attachments/assets/2241daf4-0b86-4655-9aba-d36a942c7f68)
+*Gambar 6 : Visualisasi Decision Tree)*
 
 ---
 
 ## 7. Evaluation
 
-### Confusion Matrix  
-![Confusion Matrix](https://github.com/user-attachments/assets/805e0a6b-8b5f-456f-9d60-702106ce2a43)
+### Confusion Matrix 
+Evaluasi model dimulai dengan membangun confusion matrix, yang menampilkan perbandingan prediksi model terhadap label aktual pada data uji. Berikut adalah hasil visualisasi confusion matrix :
 
-### Classification Report
+![Confusion Matrix](https://github.com/user-attachments/assets/805e0a6b-8b5f-456f-9d60-702106ce2a43)
+*Gambar 7 : Confusion Matrix*
+
+### Metrik evaluasi
+Hasil evaluasi model KNN terhadap data uji :
 ```
               precision    recall  f1-score   support
            0       0.97      0.91      0.94       370
@@ -119,34 +221,107 @@ Karena nilai target merupakan label biner, maka pendekatan klasifikasi biner sep
    macro avg       0.73      0.84      0.77       411
 weighted avg       0.93      0.90      0.91       411
 ```
+**Penjelasan metrik:**
+- Accuracy: 90% — model secara keseluruhan memprediksi dengan benar pada 90% kasus.
+- Precision (kelas 1/depresi): 48% — dari semua prediksi "depresi", hanya 48% yang benar-benar depresi.
+- Recall (kelas 1/depresi): 78% — dari semua orang yang benar-benar depresi, 78% berhasil dikenali oleh model.
+- F1-Score (kelas 1/depresi): 60% — harmonisasi antara precision dan recall.
 
-### ROC Curve
-- AUC: **0.89**  
-- Interpretasi: Model sangat baik dalam membedakan kelas meski data tidak seimbang.
-
-### Visual Tambahan
-- Decision Tree Visualization  
-- SHAP Feature Importance  
-- PCA 2D Scatter Plot  
+### Penjelasan Kinerja Model
+Model KNN menunjukkan akurasi tinggi dalam mengklasifikasikan data secara umum, terutama pada kelas mayoritas (tidak depresi). Namun, performa pada kelas minoritas (depresi) lebih menantang. Hal ini tercermin dari:
+- Precision yang rendah (banyak false positives).
+- Recall yang relatif tinggi (banyak kasus depresi berhasil dideteksi).
+- F1-score yang moderat (menyeimbangkan precision dan recall).
+Ini menunjukkan bahwa model cenderung lebih baik dalam mendeteksi kasus depresi daripada mencegah false alarm, yang sebenarnya sesuai untuk konteks medis di mana false negative (gagal deteksi) lebih berisiko daripada false positive.
 
 ---
 
 ## 8. Kesimpulan & Rekomendasi
 
-### Keberhasilan
-- Akurasi model **90%**
-- **SMOTE** efektif dalam menangani ketidakseimbangan
-- Visualisasi dan interpretasi model lengkap
+### Ringkasan Hasil Modeling dan Evaluasi
+Proyek ini telah berhasil membangun model prediksi tingkat depresi berdasarkan data psikososial dan gaya hidup, menggunakan algoritma K-Nearest Neighbors (KNN) sebagai metode utama. Hasil evaluasi menunjukkan bahwa model mencapai akurasi 90%, dengan recall sebesar 78% untuk kelas "depresi", yang menunjukkan kemampuan cukup baik dalam mendeteksi individu yang berisiko mengalami depresi.
 
-### Keterbatasan
-- **Recall** pada kelas minoritas masih rendah meski sudah ditangani SMOTE
-- KNN sensitif terhadap outlier dan noise
-- Ukuran dataset masih terbatas
+Visualisasi melalui confusion matrix dan metrik evaluasi lainnya menunjukkan bahwa model cenderung sensitif terhadap kasus depresi, meskipun precision masih dapat ditingkatkan.
 
-### Rekomendasi
-- Tambahkan lebih banyak fitur (psikologi, sosial, dsb)
-- Gunakan algoritma lain: Random Forest, XGBoost
-- Coba ensemble learning atau stacking
-- Lakukan evaluasi lanjutan dengan data real-world
+### Apakah tujuan proyek tercapai? 
+Tujuan utama dari proyek ini adalah memprediksi risiko depresi secara dini dengan menggunakan pendekatan kecerdasan buatan berdasarkan faktor-faktor personal dan sosial. Berdasarkan hasil evaluasi:
+
+✅ Model mampu mengenali pola dari individu yang berisiko tinggi terhadap depresi.
+✅ Sistem berhasil dibangun dan diimplementasikan secara lengkap dari preprocessing hingga evaluasi.
+
+Dengan demikian, tujuan proyek dinyatakan tercapai, terutama dari sisi kemampuan deteksi dan potensi penerapan dalam konteks organisasi kerja, kampus, atau komunitas kesehatan mental.
+
+### Kelebihan dan keterbatasan model
+✅ Kelebihan:
+- Menggunakan fitur-fitur relevan yang didukung literatur psikologis dan klinis.
+- Hasil recall tinggi pada kelas minoritas (depresi) — penting untuk deteksi dini.
+- Implementasi sederhana dan dapat diulang dengan dataset serupa.
+
+⚠️ Keterbatasan:
+- Precision untuk kelas "depresi" masih rendah (48%), menunjukkan banyak false positive.
+- Dataset tidak terlalu besar dan seimbang, meskipun telah ditangani dengan SMOTE.
+- Fitur yang digunakan belum mencakup dimensi lain seperti tingkat aktivitas fisik, kondisi medis, atau dukungan sosial secara langsung.
+
+### Rekomendasi perbaikan
+Untuk meningkatkan kinerja dan validitas model, berikut adalah beberapa rekomendasi ke depan : 
+- **Perluasan Dataset** Gunakan data dengan jumlah sampel yang lebih besar dan representatif secara demografis agar model lebih generalisasi.
+- **Eksplorasi Algoritma Lain** Uji algoritma lain seperti Random Forest, Support Vector Machine (SVM), atau XGBoost untuk membandingkan performa.
+- **Penambahan Fitur** Sertakan fitur tambahan seperti riwayat penyakit, skor kecemasan, gaya hidup (merokok/olahraga), dan dukungan sosial.
+- **Optimasi Handling Imbalance** Selain SMOTE, eksplorasi teknik lain seperti ADASYN atau ensemble sampling.
+- **Model Interpretability** Gunakan metode interpretasi seperti SHAP secara lebih dalam agar hasil lebih transparan dan dapat dipercaya pengguna.
+
+---
+
+## 9. Referensi
+Astuti, P. Y., & Mahmudah, F. N. (2022). Penerapan Metode K-Nearest Neighbor (KNN) Untuk Klasifikasi Tingkat Depresi Mahasiswa. Jurnal Ilmiah Informatika Komputer, 27(1), 54–60. https://doi.org/10.35760/ik.2022.v27i1.3793
+
+Putra, I. P., & Krisnandi, P. (2021). Analisis Prediksi Gangguan Kesehatan Mental Menggunakan Data Mining. Jurnal RESTI (Rekayasa Sistem dan Teknologi Informasi), 5(1), 102–108. https://doi.org/10.29207/resti.v5i1.2802
+
+Syafitri, R., & Risnandar, A. (2020). Deteksi Dini Gejala Depresi Menggunakan Metode Machine Learning. Jurnal Teknologi dan Sistem Komputer, 8(4), 257–262. https://doi.org/10.14710/jtsiskom.8.4.2020.257-262
+
+Hidayat, R., & Afifuddin, M. (2022). Prediksi Gangguan Depresi Menggunakan Metode Decision Tree dan Naïve Bayes. Jurnal Teknologi dan Informatika, 4(2), 112–120. https://ejurnal.mercubuana-yogya.ac.id/index.php/technoinformatika/article/view/2645
+
+Dewi, L. A., & Wulandari, F. (2021). Penanganan Data Tidak Seimbang Menggunakan SMOTE untuk Klasifikasi Depresi. Jurnal Mantik, 5(2), 677–683. https://iocscience.org/ejournal/index.php/mantik/article/view/1234
+
+
+### Ringkasan Hasil Modeling dan Evaluasi
+
+### Rekomendasi perbaikan
+Untuk meningkatkan kinerja dan validitas model, berikut adalah beberapa rekomendasi ke depan : 
+- **Perluasan Dataset** Gunakan data dengan jumlah sampel yang lebih besar dan representatif secara demografis agar model lebih generalisasi.
+- **Eksplorasi Algoritma Lain** Uji algoritma lain seperti Random Forest, Support Vector Machine (SVM), atau XGBoost untuk membandingkan performa.
+- **Penambahan Fitur** Sertakan fitur tambahan seperti riwayat penyakit, skor kecemasan, gaya hidup (merokok/olahraga), dan dukungan sosial.
+- **Optimasi Handling Imbalance** Selain SMOTE, eksplorasi teknik lain seperti ADASYN atau ensemble sampling.
+- **Model Interpretability** Gunakan metode interpretasi seperti SHAP secara lebih dalam agar hasil lebih transparan dan dapat dipercaya pengguna.
+
+---
+
+## 10. Lampiran
+
+### Dataset
+
+### Visualisasi Tambahan
+**1. PCA (Principal Component Analysis)**
+![image](https://github.com/user-attachments/assets/16d8efff-a0f9-4935-a8e9-51bbaf8f5eb7)
+*Gambar 8 : Visualisasi PCA*
+
+Visualisasi ini mengubah data berdimensi tinggi menjadi dua dimensi utama agar dapat divisualisasikan secara grafis. PCA membantu melihat apakah kelas target (Depression) memiliki pemisahan visual yang jelas.
+- Titik-titik berwarna menunjukkan label depresi (0 = tidak, 1 = depresi).
+- Tidak ada pemisahan yang sangat jelas, namun terdapat kecenderungan beberapa kelompok data membentuk klaster.
+
+
+**2. SHAP Summary Plot (Interpretabilitas Model)**
+![image](https://github.com/user-attachments/assets/18c01976-11ac-466f-9e24-f4ee4afe197e)
+*Gambar 9 : Visualisasi SHAP*
+
+Visualisasi ini menunjukkan kontribusi masing-masing fitur terhadap prediksi model menggunakan metode SHAP (SHapley Additive exPlanations).
+- Sumbu vertikal : fitur-fitur input.
+- Warna : nilai fitur (merah = tinggi, biru = rendah).
+- Posisi horizontal : seberapa besar pengaruh fitur tersebut pada probabilitas prediksi depresi.
+- Fitur seperti Financial Stress, Job Satisfaction, Work Pressure berkontribusi signifikan dalam keputusan model — fitur ini banyak mempengaruhi output prediksi.
+
+**3. Pairplot Antar Fitur Numerik Berdasarkan Label Depresi**
+![image](https://github.com/user-attachments/assets/e1cac945-851f-40b7-a0b4-aa6171ee7184)
+*Gambar 10 : Visualisasi Pairplot Antar Fitur*
 
 ---
